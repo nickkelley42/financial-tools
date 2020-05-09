@@ -1,13 +1,31 @@
-<form>
-</form>
+<div class="input">
+  <p>
+    <label for="current-age">Current Age:</label>
+    <Input id="current-age" @value={{this.currentAge}} />
+  </p>
+  <p>
+    <label for="current-savings">Current Amount in Retirement Savings:</label>
+    <Input id="current-savings" @value={{this.currentSavings}} />
+  </p>
+  <p>
+    <label for="est-return">Estimated Real Return:</label>
+    <Input id="est-return" @value={{this.estReturn}} />
+  </p>
+  <p>
+    <label for="spending-rate">Current Annual Spending:</label>
+    <Input id="spending-rate" @value={{this.spendingRate}} />
+  </p>
+</div>
 <table class="output">
-  <tr>
-    <td class="label">Estimated total retirement savings needed:</td>
-    <td>{{this.savingsNeeded}}</td>
-  </tr>
-  <tr>
-    <td class="label">Age you can retire:</td>
-    <td>{{this.retirementAge}}</td>
-  </tr>
+  <tbody>
+    <tr>
+      <td class="label">Estimated total retirement savings needed:</td>
+      <td>{{this.savingsNeeded}}</td>
+    </tr>
+    <tr>
+      <td class="label">Age you can retire:</td>
+      <td>{{this.retirementAge}}</td>
+    </tr>
+  </tbody>
 </table>
 {{yield}}

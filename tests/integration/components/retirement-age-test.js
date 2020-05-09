@@ -12,15 +12,37 @@ module('Integration | Component | retirement-age', function(hooks) {
 
     await render(hbs`<RetirementAge />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    const form = this.element.querySelector('.input');
+    assert.ok(form, 'form for user input');
 
-    // Template block usage:
-    await render(hbs`
-      <RetirementAge>
-        template block text
-      </RetirementAge>
-    `);
+    const output = this.element.querySelector('.output');
+    assert.ok(output, 'output table');
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    const labels = this.element.querySelectorAll('label');
+    const labelNames = [
+      'Current Age:',
+      'Current Amount in Retirement Savings:',
+      'Estimated Real Return:',
+      'Current Annual Spending:',
+    ];
+    assert.equal(labels.length, labelNames.length, 'correct number of labels');
+
+    const inputs = this.element.querySelectorAll('input');
+    const inputIds = [
+      'current-age',
+      'current-savings',
+      'est-return',
+      'spending-rate',
+    ];
+    assert.equal(inputs.length, inputIds.length, 'correct number of inputs');
+
+    for (let i=0; i < labelNames.length; ++i) {
+      const actualText = labels[i].innerText;
+      assert.equal(actualText, labelNames[i], 'correct label text');
+      const forVal = labels[i].getAttribute('for');
+      assert.equal(forVal, inputIds[i], 'correct \'for\' value');
+      const actualId = inputs[i].id;
+      assert.equal(actualId, inputIds[i], 'correct input id');
+    }
   });
 });
