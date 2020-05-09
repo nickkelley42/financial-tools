@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#!/bin/bash
+
+GITDIR="$(git rev-parse --git-dir)"
+HOOKSDIR="$GITDIR/hooks"
+
+cd "$HOOKSDIR"
+
+if [ -e "pre-commit" ]; then
+  echo "pre-commit hook already exists; aborting"
+  exit 1
+fi
+
+ln -s ../../bin/pre-commit
