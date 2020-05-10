@@ -45,4 +45,19 @@ module('Integration | Component | retirement-age', function(hooks) {
       assert.equal(actualId, inputIds[i], 'correct input id');
     }
   });
+
+  test('default values are correct', async function(assert) {
+    await render(hbs`<RetirementAge />`);
+    const values = {
+      '#current-age': '0',
+      '#current-savings': '0',
+      '#est-return': '7',
+      '#spending-rate': '0',
+    }
+
+    for (let key in values) {
+      let val = this.element.querySelector(key).value;
+      assert.equal(val, values[key], `default for ${key} is correct`);
+    }
+  });
 });
